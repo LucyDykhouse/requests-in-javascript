@@ -93,9 +93,17 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
     We'll be updating this function in the next problem.
 */
 
-const repeatMyParam = () => {
-    //YOUR CODE HERE
+const repeatMyParam = (res) => {
+    let repeatElement = document.getElementById('repeat-text');
+    repeatElement.textContent = res.data;
+    repeatElement.style.display = 'block';
+
+    return axios.get('http://localhost:3000/repeat/{str}')
+    .then(res => res.data)
 }
+
+let repeatBtn = document.getElementById('repeat-button');
+repeatBtn.addEventListener('click', repeatMyParam);
 
 // PROBLEM 7
 /*
@@ -103,8 +111,6 @@ const repeatMyParam = () => {
     
     Inside the repeatMyParam function above, grab the element with the id of 'repeat-text' and set its textContent property equal to the response data.
 */
-
-// Code in the repeatMyParam function above
 
 
 
@@ -117,9 +123,14 @@ const repeatMyParam = () => {
     Outside of your new function, select the button with the id "query-button" and add a click event listener that calls your function.
 */
 
-// CODE HERE
+function queryAttach() {
+axios.get('http://localhost:3000/repeat?myquery=testing')
+.then(({data}) =>
+console.log(data))
+}
 
-
+let queryBtn = document.getElementById('query-button');
+queryBtn.addEventListener('click', queryAttach);
 
 ////////////////
 //INTERMEDIATE//
